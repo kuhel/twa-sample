@@ -163,10 +163,8 @@
         }
 
         function setViewportData() {
-            // document.querySelector('.viewport-border')
-            //     .setAttribute('text', window.innerWidth + ' x ' + round(Telegram.WebApp.viewportHeight, 2))
             document.querySelector('.viewport')
-                .setAttribute('text', window.innerWidth + ' x ' + round(Telegram.WebApp.viewportStableHeight, 2) +
+                .setAttribute('text', window.innerWidth + ' x ' + Telegram.WebApp.viewportStableHeight +
                     ' | is_expanded: ' + (Telegram.WebApp.isExpanded ? 'true' : 'false'));
         }
         Telegram.WebApp.setHeaderColor('secondary_bg_color');
