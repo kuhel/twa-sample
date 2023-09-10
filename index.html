@@ -27,18 +27,6 @@
             height: var(--tg-viewport-stable-height, 100vh);
             pointer-events: none;
         }
-        #viewport:before {
-            content: attr(text);
-            display: inline-block;
-            position: absolute;
-            background: var(--tg-theme-link-color);
-            right: 0;
-            left: auto;
-            top: 2px;
-            font-size: 8px;
-            padding: 4px;
-            vertical-align: top;
-        }
         #viewport:after {
             content: '';
             display: block;
@@ -50,6 +38,23 @@
             border-width: 4px;
             border-style: solid;
             border-image: linear-gradient(45deg, rgba(64, 224, 208, .5), rgba(173, 255, 47, .5)) 1;
+        }
+
+        #viewport-params-size,
+        #viewport-params-expand {
+            content: attr(text);
+            display: inline-block;
+            position: absolute;
+            background: var(--tg-theme-link-color, rgb(64, 224, 208));
+            right: 4px;
+            left: auto;
+            top: 4px;
+            font-size: 8px;
+            padding: 4px;
+            vertical-align: top;
+        }
+        #viewport-params-expand {
+            top: 30px;
         }
     </style>
 </head>
@@ -78,6 +83,8 @@
         <button onclick="toggleMainButton();">Toggle Main Button</button>
     </main>
     <div id="viewport"></div>
+    <div id="viewport-params-size"></div>
+    <div id="viewport-params-expand"></div>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
         // Init TWA
@@ -123,10 +130,11 @@
         };
 
         function setViewportData() {
-            document.getElementById('viewport')
-                .setAttribute('text', 'width: ' + window.innerWidth + ' x ' + 
-                'height: ' + Telegram.WebApp.viewportStableHeight + 
-                (Telegram.WebApp.isExpanded ? ' / isExpanded' : ''));
+            const sizeEl = document.getElementById('viewport-params-size');
+            sizeEl.setHTML('width: ' + window.innerWidth + ' x ' + 
+                'height: ' + Telegram.WebApp.viewportStableHeight);
+            const expandEl = document.getElementById('viewport-params-expand');
+            expandEl.setHTML(Telegram.WebApp.isExpanded ? 'Is Expanded' : '');
         }
 
         Telegram.WebApp.setHeaderColor('secondary_bg_color');
