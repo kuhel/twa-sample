@@ -57,11 +57,6 @@
         }
         #viewport-params-expand {
             top: 30px;
-            opacity: 0;
-        }
-
-        #viewport-params-expand.show {
-            opacity: 100%;
         }
     </style>
 </head>
@@ -145,10 +140,7 @@
                 'height: ' + Telegram.WebApp.viewportStableHeight;
 
             var expandEl = document.querySelector('#viewport-params-expand');
-            if (Telegram.WebApp.isExpanded) {
-                expandEl.classList.toggle('show');
-            }
-            expandEl.innerText = Telegram.WebApp.isExpanded ? 'Is Expanded' : '';
+            expandEl.innerText = 'Is Expanded: ' + Telegram.WebApp.isExpanded ? 'true' : 'false';
         }
 
         Telegram.WebApp.setHeaderColor('secondary_bg_color');
